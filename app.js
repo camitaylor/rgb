@@ -1,3 +1,4 @@
+//defines the variables
 var numSquares = 6;
 var colors = [];
 var pickedColor;
@@ -13,7 +14,7 @@ var resetPressed = true;
 
 
 init();
-
+//creates the Easy/Hard modes buttons and the score 
 function init(){
 	setupModeButtons();
 	setupSquares();
@@ -27,7 +28,7 @@ function init(){
 	}
 	reset();
 }
-
+//determines how many squares for each mode based on which button was clicked
 function setupModeButtons(){
 	for(var i = 0; i < modeButtons.length; i++){
 		modeButtons[i].addEventListener("click", function(){
@@ -39,7 +40,7 @@ function setupModeButtons(){
 		});
 	}
 }
-
+//determines what message displayed based on whether wrong or correct answer chosen, and adjusts the score accordingly
 function setupSquares(){
 	for(var i = 0; i < squares.length; i++){
 	//add click listeners to squares
@@ -71,7 +72,7 @@ function setupSquares(){
 	}
 }
 
-
+//determines what colors to use and where they will come from, as well as how to name the colors.
 async function updateColorName(){
 	const regex = /\([^\)]+\)/g; 
 	var rgbColors = pickedColor.match(regex); 
@@ -91,7 +92,7 @@ async function updateColorName(){
 		colorDisplay.textContent = colorData.name.value + "-ish"; 
 	}
 }
-
+//determines how to reset the different colors of the squares when the "New Colors" button is pressed
 function reset(){
 	resetPressed = true;
 	colors = generateRandomColors(numSquares);
@@ -116,7 +117,7 @@ function reset(){
 resetButton.addEventListener("click", function(){
 	reset();
 })
-
+//changes the colors of all the squares
 function changeColors(color){
 	//loop through all squares
 	for(var i = 0; i < squares.length; i++){
@@ -124,12 +125,12 @@ function changeColors(color){
 		squares[i].style.background = color;
 	}
 }
-
+//picks the color of the right answer
 function pickColor(){
 	var random = Math.floor(Math.random() * colors.length);
 	return colors[random];
 }
-
+//randomizes the colors of the squares using an array
 function generateRandomColors(num){
 	//make an array
 	var arr = []
@@ -141,7 +142,7 @@ function generateRandomColors(num){
 	//return that array
 	return arr;
 }
-
+//randomizes the question (rbg) to be presented
 function randomColor(){
 	//pick a "red" from 0 - 255
 	var r = Math.floor(Math.random() * 256);
